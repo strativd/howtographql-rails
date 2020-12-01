@@ -1,8 +1,6 @@
-# [💎 How to Graphql with Ruby on Rails](https://www.howtographql.com/graphql-ruby)
+# 💎 [How to Graphql with Ruby on Rails](https://www.howtographql.com/graphql-ruby)
 
-## Tutorial contents
-
-Each tutorial step is broken down in this repo's [commit history](https://github.com/ztratify/howtographql-rails/commits/main)
+##### Each tutorial step is broken down in this repo's [commit history](https://github.com/ztratify/howtographql-rails/commits/main)
 
 1. [Getting Started](https://www.howtographql.com/graphql-ruby/1-getting-started/)
 2. Queries
