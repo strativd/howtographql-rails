@@ -19,11 +19,21 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+# START: ADDED GEMS
+
 # Graphql rails
 gem 'graphql', '1.9.17'
 
 # Ensure secure passwords
 gem 'bcrypt', '~> 3.1.13'
+
+# Graphiql GUI
+gem 'graphiql-rails', '1.7.0', group: :development
+
+# Filter mutations (for search)
+gem 'search_object_graphql', '0.3.1'
+
+# END: ADDED GEMS
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -41,6 +51,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-# Graphiql GUI
-gem 'graphiql-rails', '1.7.0', group: :development
