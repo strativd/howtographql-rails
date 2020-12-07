@@ -52,17 +52,20 @@ open http://localhost:3000/
 
 ## Sample GraphQL Queries
 
-List first 10 links, containing "example":
+List first 5 links containing "watch":
 
 ```graphql
 {
-  allLinks(first: 10, filter: {descriptionContains: "example"}) {
-    id
+  searchLinks(
+    first: 5,
+    skip: 0,
+    filter:{
+      descriptionContains: "watch"
+    }
+  ) {
     url
     description
-    createdAt
     postedBy {
-      id
       name
     }
   }
@@ -75,13 +78,16 @@ Creates new user:
 ```graphql
 mutation {
   createUser(
-    name: "Radoslav Stankov",
-    authProvider: {
-      email: { email: "rado@example.com", password: "123456" }
-    }
+      name: "Testy McTester",
+      authProvider: {
+        credentials: {
+          email: "test@gmail.com",
+          password: "password"
+        }
+      }
   ) {
-    id
     email
+    id
     name
   }
 }
@@ -91,11 +97,14 @@ Creates new user token:
 
 ```graphql
 mutation {
-  signinUser(email: {email: "rado@example.com", password: "123456"}) {
+  loginUser(
+    credentials: {
+    		email: "test@gmail.com",
+      	password: "password"
+  		}
+  	) {
     token
     user {
-      id
-      email
       name
     }
   }
@@ -106,13 +115,15 @@ Creates new link:
 
 ```graphql
 mutation {
-  createLink(url:"http://example.com", description:"Example") {
-    id
-    url
+  createLink(
+    description: "Watch NHL 🏒",
+    url: "http://nhl.com"
+  ) {
     description
+    url
+    id
     postedBy {
       id
-      name
     }
   }
 }
@@ -122,15 +133,36 @@ Creates new vote:
 
 ```graphql
 mutation {
-  createVote(linkId:"TGluay0yMQ==") {
-    user {
-      id
-      name
-    }
+  createVote(
+    linkId: "4"
+  ) {
     link {
-      id
-      url
       description
+      url
+    }
+  }
+}
+```
+
+Get all links and votes, with the voter and their vote history:
+
+```graphql
+{
+  allLinks {
+    url
+    description
+    id
+    votes {
+      user {
+        name
+        votes {
+          link {
+            url
+            description
+            id
+          }
+        }
+      }
     }
   }
 }
